@@ -5,52 +5,14 @@
 <style>
     :root {
         --primary-grad: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);
-        --primary-btn-bg: #1a2a4a;
-        --primary-btn-hover: #0f172a;
         --dark: #1e293b;
         --radius: 20px;
         --shadow: 0 10px 20px -5px rgba(0,0,0,0.08);
         --bg-light: #f1f5f9;
         --card-bg: #ffffff;
-        --accent-color: #f59e0b;
     }
 
     body { background-color: var(--bg-light); font-family: 'Inter', sans-serif; color: var(--dark); }
-
-    .hero-section {
-        background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0f172a 100%);
-        border-radius: var(--radius);
-        padding: 50px 30px;
-        margin-bottom: 40px;
-        color: white;
-        text-align: center;
-        box-shadow: 0 15px 30px rgba(10, 22, 40, 0.3);
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-    .hero-section::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
-        z-index: 0;
-    }
-    .hero-section h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 800; letter-spacing: 0.02em; position: relative; z-index: 1; }
-    .hero-section p { font-size: 1.1rem; opacity: 0.8; position: relative; z-index: 1; }
-    .hero-badge {
-        background: rgba(255,255,255,0.1);
-        border-radius: 50px;
-        padding: 8px 20px;
-        display: inline-block;
-        margin-bottom: 20px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255,255,255,0.1);
-        position: relative;
-        z-index: 1;
-    }
 
     .card-stylish {
         background: var(--card-bg);
@@ -152,31 +114,6 @@
         background: linear-gradient(135deg, #0a1628 0%, #0f172a 100%);
     }
 
-    .btn-login {
-        background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 15px;
-        font-weight: 700;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.2s;
-        border: none;
-    }
-    .btn-login:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.4);
-        color: white;
-    }
-
-    .violator-item {
-        padding: 4px 0;
-        border-bottom: 1px solid #f1f5f9;
-    }
-    .violator-item:last-child {
-        border-bottom: none;
-    }
-
     .intro-card {
         background: #ffffff;
         padding: 30px;
@@ -237,8 +174,6 @@
     }
 
     @media (max-width: 768px) {
-        .hero-section h1 { font-size: 2rem; }
-        .hero-section { padding: 30px 20px; }
         .inspector-grid { grid-template-columns: 1fr; }
         .feature-card { margin-bottom: 20px; }
         .stats-number { font-size: 1.8rem; }
@@ -246,28 +181,19 @@
 
     @media (max-width: 480px) {
         .btn-action { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
-        .hero-section h1 { font-size: 1.5rem; }
     }
 </style>
 
-<div class="container">
-    <div class="hero-section">
+<div class="container pt-4">
     {% if user.is_authenticated %}
-        <h1>Добро пожаловать, {{ user.full_name|default:user.username }}!</h1>
-        <p>Ваша рабочая панель для контроля нарушений</p>
-    {% else %}
-        <div style="text-align: center; padding: 2rem 0;">
-            <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 600; color: #ffffff; margin-bottom: 1rem; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                Единая система контроля нарушений ПДД
-            </h2>
-            <p style="font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 400; color: rgba(255, 255, 255, 0.85); margin: 0; line-height: 1.6;">
-                Официальный портал для проверки и оплаты штрафов, отслеживания истории нарушений и получения необходимых справок ГИБДД.
-            </p>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="intro-card text-center">
+                    <h2 class="fw-bold mb-2" style="color: #1e293b;">С возвращением, {{ user.full_name|default:user.username }}!</h2>
+                    <p class="text-muted mb-0">Ваша рабочая панель для контроля нарушений</p>
+                </div>
+            </div>
         </div>
-    {% endif %}
-</div>
-
-    {% if user.is_authenticated %}
 
         {% if user.role == 'inspector' %}
         <div class="row mb-4">
@@ -363,7 +289,7 @@
             </div>
         </div>
 
-        <div class="table-card">
+        <div class="table-card mb-5">
             <div style="padding: 1.5rem; font-weight: 800; font-size: 1.2rem; border-bottom: 1px solid #f1f5f9;">
                 📋 Последние фиксации
             </div>
@@ -426,7 +352,7 @@
             </div>
         </div>
 
-        <div class="table-card">
+        <div class="table-card mb-5">
             <div style="padding: 1.5rem; font-weight: 800; font-size: 1.2rem; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
                 <span>📋 Мои штрафы</span>
                 <a href="{% url 'my_violations' %}" class="btn-action" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;">
@@ -502,7 +428,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-6 mb-4">
                 <div class="card-stylish" onclick="window.location.href='{% url 'manager_inspector_list' %}'" style="cursor: pointer;">
                     <div class="card-icon" style="background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);">
@@ -529,27 +455,30 @@
         {% endif %}
 
     {% else %}
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card-stylish text-center p-5">
-                <div class="card-icon" style="background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);">
-                    🔐
-                </div>
-                <div class="card-content">
-                    <h3>Доступ к системе</h3>
-                    <p>Для просмотра персональной статистики и управления нарушениями необходимо авторизоваться.</p>
-                    <div class="mt-4">
-                        <a href="{% url 'login' %}" class="btn-action" style="margin-right: 15px;">
-                            Войти
-                        </a>
-                        <a href="{% url 'register' %}" class="btn-action" style="background: #475569;">
-                            Зарегистрироваться
-                        </a>
+        <!-- ДЛЯ НЕАВТОРИЗОВАННЫХ: БЕЗ ТЕМНОЙ ПЛАШКИ, СРАЗУ КАРТОЧКА -->
+        <div class="row justify-content-center pt-5">
+            <div class="col-md-8">
+                <div class="card-stylish text-center p-5">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%); margin-bottom: 20px;">
+                        🔐
+                    </div>
+                    <div class="card-content">
+                        <h3 class="fw-bold" style="color: #1e293b;">Доступ к системе</h3>
+                        <p class="text-muted mb-4">
+                            Официальный портал для проверки и оплаты штрафов, отслеживания истории нарушений и получения необходимых справок ГИБДД.
+                        </p>
+                        <div class="mt-4">
+                            <a href="{% url 'login' %}" class="btn-action" style="margin-right: 15px;">
+                                Войти
+                            </a>
+                            <a href="{% url 'register' %}" class="btn-action" style="background: #475569;">
+                                Зарегистрироваться
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     {% endif %}
 
     <div class="container mt-5 mb-5">
