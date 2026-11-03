@@ -85,50 +85,40 @@
         gap: 10px;
     }
 
-    /* Блок авторизации (Чистый, без "квадратов") */
+    /* Блок авторизации (Чистый, без иконок и лишних рамок) */
     .auth-clean-wrap {
-        max-width: 440px;
+        max-width: 600px;
         margin: 4rem auto;
         text-align: center;
     }
     
-    .auth-clean-icon {
-        width: 64px;
-        height: 64px;
-        background-color: var(--gray-50);
-        color: var(--navy-900);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
     .auth-clean-wrap h2 {
         font-family: var(--font-heading);
         font-weight: 800;
         color: var(--navy-900);
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
 
     .auth-clean-wrap p.subtitle {
         color: var(--gray-600);
-        font-size: 1rem;
-        line-height: 1.5;
+        font-size: 1.05rem;
+        line-height: 1.6;
         margin-bottom: 2.5rem;
     }
 
+    /* Кнопки ровно в ряд */
     .auth-clean-buttons {
         display: flex;
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
         margin-bottom: 2.5rem;
     }
 
     .btn-clean-primary {
-        width: 100%;
+        flex: 1;
+        max-width: 220px;
         padding: 1rem;
         background-color: var(--navy-900);
         color: #ffffff !important;
@@ -142,7 +132,8 @@
     .btn-clean-primary:hover { background-color: #1a365d; }
 
     .btn-clean-outline {
-        width: 100%;
+        flex: 1;
+        max-width: 220px;
         padding: 1rem;
         background-color: transparent;
         color: var(--navy-900) !important;
@@ -155,17 +146,19 @@
     }
     .btn-clean-outline:hover { background-color: var(--gray-50); }
 
-    /* Роли в самом низу, маленькие и аккуратные */
+    /* Роли */
     .auth-clean-roles {
         display: flex;
         justify-content: center;
-        gap: 1.5rem;
+        gap: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--gray-100);
     }
     .auth-clean-role {
         display: flex;
         align-items: center;
-        gap: 6px;
-        font-size: 0.85rem;
+        gap: 8px;
+        font-size: 0.9rem;
         font-weight: 500;
         color: var(--gray-600);
     }
@@ -216,6 +209,21 @@
         }
         .auth-clean-wrap h2 { font-size: 1.5rem; }
         .auth-clean-wrap p.subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
+        
+        /* На мобилке кнопки друг под другом */
+        .auth-clean-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-clean-primary, .btn-clean-outline {
+            width: 100%;
+            max-width: 100%;
+        }
+        .auth-clean-roles {
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
     }
 </style>
 </head>
@@ -340,15 +348,12 @@
     
     {% if not user.is_authenticated %}
     <div class="auth-clean-wrap">
-        <div class="auth-clean-icon">
-            <i class="fas fa-lock"></i>
-        </div>
-        <h2>Доступ к системе</h2>
-        <p class="subtitle">Войдите, чтобы проверить статус своих штрафов и получить доступ к личному кабинету.</p>
+        <h2>Добро пожаловать</h2>
+        <p class="subtitle">Портал предназначен для проверки и оплаты штрафов, отслеживания нарушений ПДД и получения официальных справок ГИБДД.</p>
         
         <div class="auth-clean-buttons">
-            <a href="{% url 'login' %}" class="btn-clean-primary">Войти в систему</a>
-            <a href="{% url 'register' %}" class="btn-clean-outline">Зарегистрироваться</a>
+            <a href="{% url 'login' %}" class="btn-clean-primary">Войти</a>
+            <a href="{% url 'register' %}" class="btn-clean-outline">Регистрация</a>
         </div>
 
         <div class="auth-clean-roles">
