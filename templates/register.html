@@ -30,7 +30,7 @@
                 </div>
                 {% endif %}
 
-                <form method="post" id="registerForm" novalidate>
+                <form method="post" novalidate>
                     {% csrf_token %}
 
                     <h5 class="fw-bold mb-4" style="color: var(--navy-800); border-bottom: 2px solid var(--gray-200); padding-bottom: 10px;">
@@ -130,24 +130,42 @@
                     </div>
 
                     <div class="mb-4 p-4 rounded" style="background-color: var(--gray-50); border: 1px solid var(--border);">
-                        <label class="form-label fw-bold text-muted small mb-2 d-block">Государственный номерной знак</label>
+                        <label class="form-label d-block fw-bold text-muted small mb-3 text-center">Государственный номерной знак</label>
                         
-                        <input type="text" id="full_plate_input" class="form-control" placeholder="Например: А678НЕ77" required style="font-family: monospace; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
-                        
-                        <div class="form-text small mt-2">
-                            <i class="fas fa-info-circle me-1" style="color: var(--navy-600);"></i>
-                            Введите номер и регион слитно, без пробелов.
+                        <div class="d-flex justify-content-center align-items-end gap-2 flex-nowrap">
+                            
+                            <div style="width: 110px; flex-shrink: 0;">
+                                <label class="small text-muted mb-1 d-block text-center">Страна</label>
+                                {{ form.country }}
+                            </div>
+
+                            <div class="d-flex align-items-stretch" style="height: 52px; min-width: 280px; background: #fff; border: 2px solid var(--gray-800); border-radius: 4px;">
+                                
+                                <div class="flex-grow-1 d-flex align-items-center justify-content-center" style="border-right: 2px solid var(--gray-800);">
+                                    <input type="text" name="license_plate" class="plate-input main-part"
+                                           placeholder="А000АА" value="{{ form.license_plate.value|default:'' }}"
+                                           style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 28px; font-family: monospace; font-weight: bold;">
+                                </div>
+                                
+                                <div class="d-flex flex-column justify-content-between align-items-center py-1" style="width: 75px;">
+                                    <input type="text" name="car_region" class="plate-input region-part"
+                                           placeholder="777" maxlength="3" value="{{ form.car_region.value|default:'' }}"
+                                           style="border: none; outline: none; text-align: center; font-size: 22px; font-family: monospace; font-weight: bold; width: 100%; padding: 0; background: transparent;">
+                                    <div class="d-flex align-items-center justify-content-center w-100" style="margin-top: -4px;">
+                                        <span id="country_code" style="font-size: 11px; font-weight: bold;">RUS</span>
+                                        <img id="country_flag_img" src="{% static 'rus_flag.png' %}" style="width: 16px; height: 11px; margin-left: 4px;">
+                                    </div>
+                                </div>
+                                
+                            </div>
+
                         </div>
-
-                        <input type="hidden" name="license_plate" id="hidden_license_plate">
-                        <input type="hidden" name="car_region" id="hidden_car_region">
-                        <input type="hidden" name="country" value="RUS">
-
+                        
                         {% if form.license_plate.errors %}
-                        <div class="small mt-2" style="color: var(--danger);">{% for e in form.license_plate.errors %}{{ e }}{% endfor %}</div>
+                        <div class="small text-center mt-2" style="color: var(--danger);">{% for e in form.license_plate.errors %}{{ e }}{% endfor %}</div>
                         {% endif %}
                         {% if form.car_region.errors %}
-                        <div class="small mt-2" style="color: var(--danger);">{% for e in form.car_region.errors %}{{ e }}{% endfor %}</div>
+                        <div class="small text-center" style="color: var(--danger);">{% for e in form.car_region.errors %}{{ e }}{% endfor %}</div>
                         {% endif %}
                     </div>
 
@@ -191,6 +209,7 @@
 </div>
 
 <style>
+    .plate-input:focus { box-shadow: none !important; }
     .text-danger { color: #dc3545 !important; }
 
     .card-body input[type="text"],
@@ -219,6 +238,14 @@
         box-shadow: 0 0 0 0.2rem rgba(38, 82, 155, 0.15) !important;
         background-color: #ffffff !important;
     }
+
+    .card-body input.plate-input {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
     
     .card-body select {
         cursor: pointer !important;
@@ -238,26 +265,18 @@
         });
     }
 
-    const fullPlateInput = document.getElementById('full_plate_input');
-    if (fullPlateInput) {
-        fullPlateInput.addEventListener('input', function(e) {
-            this.value = this.value.toUpperCase().replace(/[^А-ЯA-Z0-9]/g, '');
+    const regionInput = document.querySelector('input[name="car_region"]');
+    if (regionInput) {
+        regionInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3);
         });
     }
 
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-        const fullPlate = document.getElementById('full_plate_input').value.trim();
-        
-        if (fullPlate.length >= 7) {
-            const plate = fullPlate.substring(0, 6);
-            const region = fullPlate.substring(6);
-            
-            document.getElementById('hidden_license_plate').value = plate;
-            document.getElementById('hidden_car_region').value = region;
-        } else {
-            document.getElementById('hidden_license_plate').value = fullPlate;
-            document.getElementById('hidden_car_region').value = "";
-        }
-    });
+    const plateInput = document.querySelector('input[name="license_plate"]');
+    if (plateInput) {
+        plateInput.addEventListener('input', function(e) {
+            this.value = this.value.toUpperCase();
+        });
+    }
 </script>
 {% endblock %}
