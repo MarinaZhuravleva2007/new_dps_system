@@ -33,7 +33,6 @@
                 <form method="post" novalidate>
                     {% csrf_token %}
 
-                    <!-- ЛИЧНЫЕ ДАННЫЕ -->
                     <h5 class="fw-bold mb-4" style="color: var(--navy-800); border-bottom: 2px solid var(--gray-200); padding-bottom: 10px;">
                         <i class="fas fa-id-card me-2" style="color: var(--accent);"></i>Личные данные
                     </h5>
@@ -92,7 +91,6 @@
 
                     <hr class="my-4" style="border-color: var(--gray-200);">
 
-                    <!-- ДАННЫЕ АВТОМОБИЛЯ -->
                     <h5 class="fw-bold mb-4" style="color: var(--navy-800); border-bottom: 2px solid var(--gray-200); padding-bottom: 10px;">
                         <i class="fas fa-car me-2" style="color: var(--accent);"></i>Данные автомобиля
                     </h5>
@@ -131,31 +129,38 @@
                         </div>
                     </div>
 
-                    <!-- ГОСНОМЕР -->
+                    <!-- ИСПРАВЛЕННЫЙ БЛОК ГОСНОМЕРА -->
                     <div class="mb-4 p-4 rounded" style="background-color: var(--gray-50); border: 1px solid var(--border);">
                         <label class="form-label d-block fw-bold text-muted small mb-3 text-center">Государственный номерной знак</label>
-                        <div class="d-flex justify-content-center align-items-end flex-wrap gap-3">
-                            <div style="width: 120px;">
-                                <label class="small text-muted mb-1">Страна</label>
-                                {{ form.country }}
+                        
+                        <div class="d-flex justify-content-center align-items-end gap-2 flex-nowrap">
+                            
+                            <div style="width: 110px; flex-shrink: 0;">
+                                <label class="small text-muted mb-1 d-block text-center">Страна</label>
+                                <div style="height: 50px;">
+                                    {{ form.country }}
+                                </div>
                             </div>
-                            <div class="d-flex align-items-stretch shadow-sm" style="height: 65px; min-width: 320px; background: #fff; border: 2px solid var(--gray-800); border-radius: 6px;">
+
+                            <div class="d-flex align-items-stretch" style="height: 50px; min-width: 280px; background: #fff; border: 2px solid var(--gray-800); border-radius: 4px;">
                                 <div class="p-1 flex-grow-1 d-flex align-items-center justify-content-center" style="border-right: 2px solid var(--gray-800);">
                                     <input type="text" name="license_plate" class="plate-input main-part"
                                            placeholder="А000АА" value="{{ form.license_plate.value|default:'' }}"
-                                           style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 32px; font-family: monospace; font-weight: bold;">
+                                           style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 26px; font-family: monospace; font-weight: bold;">
                                 </div>
-                                <div class="p-1 text-center d-flex flex-column justify-content-between" style="width: 85px;">
+                                <div class="p-1 d-flex flex-column justify-content-between align-items-center" style="width: 70px;">
                                     <input type="text" name="car_region" class="plate-input region-part"
                                            placeholder="777" maxlength="3" value="{{ form.car_region.value|default:'' }}"
-                                           style="border: none; outline: none; text-align: center; font-size: 24px; font-family: monospace; font-weight: bold;">
-                                    <div class="d-flex align-items-center justify-content-center pb-1">
-                                        <span id="country_code" style="font-size: 11px; font-weight: bold;">RUS</span>
-                                        <img id="country_flag_img" src="{% static 'rus_flag.png' %}" style="width: 18px; height: 12px; margin-left: 5px;">
+                                           style="border: none; outline: none; text-align: center; font-size: 20px; font-family: monospace; font-weight: bold; width: 100%;">
+                                    <div class="d-flex align-items-center justify-content-center w-100 pb-1">
+                                        <span id="country_code" style="font-size: 10px; font-weight: bold;">RUS</span>
+                                        <img id="country_flag_img" src="{% static 'rus_flag.png' %}" style="width: 16px; height: 10px; margin-left: 4px;">
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                        
                         {% if form.license_plate.errors %}
                         <div class="small text-center mt-2" style="color: var(--danger);">{% for e in form.license_plate.errors %}{{ e }}{% endfor %}</div>
                         {% endif %}
@@ -164,7 +169,6 @@
                         {% endif %}
                     </div>
 
-                    <!-- ПОЛЕ ДЛЯ ИНСПЕКТОРА -->
                     <div id="inspector_block" class="mb-4 p-3 rounded {% if form.role.value not in 'inspector,manager' %}d-none{% endif %}" style="background-color: #fff3cd; border-left: 4px solid var(--warning);">
                         <label class="form-label fw-bold text-muted small">Номер служебного удостоверения</label>
                         {{ form.service_id }}
@@ -175,7 +179,6 @@
 
                     <hr class="my-4" style="border-color: var(--gray-200);">
 
-                    <!-- БЕЗОПАСНОСТЬ -->
                     <h5 class="fw-bold mb-4" style="color: var(--navy-800); border-bottom: 2px solid var(--gray-200); padding-bottom: 10px;">
                         <i class="fas fa-lock me-2" style="color: var(--accent);"></i>Безопасность
                     </h5>
@@ -209,7 +212,7 @@
     .plate-input:focus { box-shadow: none !important; }
     .text-danger { color: #dc3545 !important; }
 
-    /* Автоматическое применение стилей Bootstrap к полям Django */
+    /* Жесткое применение стилей к полям Django */
     .card-body input[type="text"],
     .card-body input[type="password"],
     .card-body input[type="email"],
@@ -217,28 +220,38 @@
     .card-body input[type="number"],
     .card-body select,
     .card-body textarea {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 0.75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: var(--gray-800);
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid var(--border-strong);
-        border-radius: 6px;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        display: block !important;
+        width: 100% !important;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 400 !important;
+        line-height: 1.5 !important;
+        color: #343a40 !important;
+        background-color: #f8f9fa !important;
+        border: 1px solid #ced4da !important;
+        border-radius: 6px !important;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
     }
+
     .card-body input:focus, .card-body select:focus, .card-body textarea:focus {
-        border-color: var(--navy-600);
-        outline: 0;
-        box-shadow: 0 0 0 0.2rem rgba(38, 82, 155, 0.15);
+        border-color: #26529b !important;
+        outline: 0 !important;
+        box-shadow: 0 0 0 0.2rem rgba(38, 82, 155, 0.15) !important;
+        background-color: #ffffff !important;
     }
+
+    /* Исключение для полей госномера (они должны быть прозрачными и без рамок) */
     .plate-input {
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    /* Убираем стрелочки у select в некоторых браузерах, чтобы не было лишнего */
+    .card-body select {
+        cursor: pointer !important;
     }
 </style>
 
