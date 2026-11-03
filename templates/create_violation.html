@@ -120,7 +120,6 @@
     }
     .hidden-fields { display: none; }
 
-    /* ===== ТЁМНО-СИНИЕ КНОПКИ ===== */
     .btn-submit-main {
         background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%);
         border: none;
@@ -190,7 +189,6 @@
         display: inline-block;
     }
 
-    /* Стили для обязательных полей */
     .required-field::after {
         content: " *";
         color: #dc3545;
@@ -262,7 +260,6 @@
                     </div>
                 </div>
 
-                <!-- ===== СТРОКА 3: Статья + Сумма ===== -->
                 <div class="row g-3 mb-4">
                     <div class="col-md-6">
                         <label class="form-label required-field">Номер статьи</label>
@@ -281,7 +278,6 @@
                     </div>
                 </div>
 
-                <!-- ===== СТРОКА 4: Комментарий инспектора (НОВОЕ ПОЛЕ) ===== -->
                 <div class="row g-3 mb-4">
                     <div class="col-md-12">
                         <label class="form-label">
@@ -294,7 +290,6 @@
                     </div>
                 </div>
 
-                <!-- ===== ФОТО ===== -->
                 <div class="mb-4">
                     <label class="form-label fw-bold">Фото/видео доказательство</label>
                     {{ form.evidence_img }}
@@ -302,7 +297,6 @@
                     <small class="text-muted-custom">Поддерживаются JPG, PNG, GIF</small>
                 </div>
 
-                <!-- ===== КНОПКИ ===== -->
                 <button type="submit" class="btn btn-submit-main btn-lg w-100 rounded-pill mt-3">
                     ЗАРЕГИСТРИРОВАТЬ ПРОТОКОЛ
                 </button>
@@ -320,7 +314,6 @@
     </div>
 </div>
 
-<!-- Модальное окно для статей -->
 <div class="modal fade" id="fineModal" tabindex="-1" aria-labelledby="fineModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
@@ -343,7 +336,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // ===== ВАЛИДАЦИЯ VIN =====
         const vinInput = document.getElementById('id_vin_input');
         if (vinInput) {
             vinInput.addEventListener('input', function() {
@@ -356,7 +348,6 @@
             });
         }
 
-        // ===== ПОИСК СТАТЕЙ =====
         const articleSearchInput = document.getElementById('articleSearchInput');
         const articlesResultDiv = document.getElementById('articlesResult');
         const hiddenArticleInput = document.getElementById('id_article');
