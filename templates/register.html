@@ -30,7 +30,7 @@
                 </div>
                 {% endif %}
 
-                <form method="post" novalidate>
+                <form method="post" id="registerForm" novalidate>
                     {% csrf_token %}
 
                     <h5 class="fw-bold mb-4" style="color: var(--navy-800); border-bottom: 2px solid var(--gray-200); padding-bottom: 10px;">
@@ -142,13 +142,13 @@
                             <div class="d-flex align-items-stretch" style="height: 52px; min-width: 280px; background: #fff; border: 2px solid var(--gray-800); border-radius: 4px;">
                                 
                                 <div class="flex-grow-1 d-flex align-items-center justify-content-center" style="border-right: 2px solid var(--gray-800);">
-                                    <input type="text" name="license_plate" class="plate-input main-part"
+                                    <input type="text" id="id_plate_visual" name="license_plate" class="plate-input main-part"
                                            placeholder="А000АА" value="{{ form.license_plate.value|default:'' }}"
                                            style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 28px; font-family: monospace; font-weight: bold;">
                                 </div>
                                 
                                 <div class="d-flex flex-column justify-content-between align-items-center py-1" style="width: 75px;">
-                                    <input type="text" name="car_region" class="plate-input region-part"
+                                    <input type="text" id="id_region_visual" name="car_region" class="plate-input region-part"
                                            placeholder="777" maxlength="3" value="{{ form.car_region.value|default:'' }}"
                                            style="border: none; outline: none; text-align: center; font-size: 22px; font-family: monospace; font-weight: bold; width: 100%; padding: 0; background: transparent;">
                                     <div class="d-flex align-items-center justify-content-center w-100" style="margin-top: -4px;">
@@ -278,5 +278,20 @@
             this.value = this.value.toUpperCase();
         });
     }
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        const plateField = document.getElementById('id_plate_visual');
+        const regionField = document.getElementById('id_region_visual');
+        
+        if (plateField && regionField) {
+            let plate = plateField.value.trim().toUpperCase();
+            let region = regionField.value.trim();
+            
+            if (plate && region) {
+                plateField.value = plate + region;
+                regionField.value = '';
+            }
+        }
+    });
 </script>
 {% endblock %}
