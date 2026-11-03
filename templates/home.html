@@ -258,10 +258,10 @@
     {% else %}
         <div style="text-align: center; padding: 2rem 0;">
             <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 600; color: #ffffff; margin-bottom: 1rem; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                Добро пожаловать на официальный портал
+                Единая система контроля нарушений ПДД
             </h2>
             <p style="font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 400; color: rgba(255, 255, 255, 0.85); margin: 0; line-height: 1.6;">
-                Здесь вы можете проверить историю своих нарушений, изучить правила дорожного движения и получить необходимые справки
+                Официальный портал для проверки и оплаты штрафов, отслеживания истории нарушений и получения необходимых справок ГИБДД.
             </p>
         </div>
     {% endif %}
@@ -475,7 +475,6 @@
         </div>
 
         {% elif user.role == 'manager' %}
-        <!-- СТАТИСТИКА РУКОВОДИТЕЛЯ -->
         <div class="row mb-4">
             <div class="col-md-3">
                 <div class="stats-card-modern">
@@ -530,7 +529,6 @@
         {% endif %}
 
     {% else %}
-    <!-- ДЛЯ НЕАВТОРИЗОВАННЫХ ПОЛЬЗОВАТЕЛЕЙ -->
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card-stylish text-center p-5">
