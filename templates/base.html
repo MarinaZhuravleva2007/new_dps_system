@@ -310,9 +310,82 @@
         transform: scale(1.1);
     }
 
-    @media (max-width: 768px) {
-        .custom-auth-card { padding: 2.5rem 1.5rem; margin: 2rem 1rem; }
-        .custom-btn-group { flex-direction: column; }
+    /* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ===== */
+    @media (max-width: 991px) {
+        .top-header {
+            min-height: 250px;
+            padding: 30px 15px;
+        }
+        .header-welcome h1 {
+            font-size: 1.8rem;
+        }
+        .header-welcome p {
+            font-size: 0.95rem;
+        }
+        .header-badge {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            margin-bottom: 15px;
+        }
+        .navbar-custom .navbar-brand {
+            border-right: none;
+            padding-right: 0;
+            margin-right: 0;
+            font-size: 1.1rem;
+        }
+        .navbar-custom .nav-link {
+            padding: 0.75rem 1rem !important;
+        }
+        .navbar-collapse {
+            background-color: #0f1f3d;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #1d3f7a;
+        }
+        .navbar-nav {
+            gap: 0.2rem;
+        }
+        .navbar-nav .nav-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .navbar-nav .nav-item:last-child {
+            border-bottom: none;
+        }
+        .dropdown-menu-dark {
+            border: none;
+            background-color: rgba(0,0,0,0.2);
+            padding-left: 1rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .user-dropdown {
+            padding: 0.75rem 0 !important;
+        }
+        .custom-auth-card {
+            padding: 2.5rem 1.5rem;
+            margin: 2rem auto;
+        }
+        .custom-auth-icon {
+            width: 64px;
+            height: 64px;
+            font-size: 1.8rem;
+        }
+        .custom-auth-card h2 {
+            font-size: 1.5rem;
+        }
+        .custom-btn-group {
+            flex-direction: column;
+        }
+        .custom-roles-wrap {
+            gap: 1rem;
+        }
+        .custom-role-item {
+            font-size: 0.75rem;
+        }
+        .custom-role-item i {
+            font-size: 1.2rem;
+        }
     }
 </style>
 </head>
