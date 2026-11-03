@@ -455,8 +455,19 @@
         {% endif %}
 
     {% else %}
-        <!-- ДЛЯ НЕАВТОРИЗОВАННЫХ: БЕЗ ТЕМНОЙ ПЛАШКИ, СРАЗУ КАРТОЧКА -->
-        <div class="row justify-content-center pt-5">
+        <!-- БЛОК ДЛЯ НЕАВТОРИЗОВАННЫХ: СНАЧАЛА ОПИСАНИЕ, ПОТОМ РЕГИСТРАЦИЯ -->
+        <div class="row justify-content-center mb-5 pt-4">
+            <div class="col-md-10 text-center">
+                <div class="intro-card shadow-sm">
+                    <p class="lead fw-bold" style="color: #475569; line-height: 1.6; margin-bottom: 0;">
+                        Данная система предназначена для автоматизации процессов фиксации, учета и анализа нарушений ПДД.
+                        Она объединяет в себе удобный интерфейс для сотрудников ГИБДД, водителей и руководителей.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-5">
             <div class="col-md-8">
                 <div class="card-stylish text-center p-5">
                     <div class="card-icon" style="background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 100%); margin-bottom: 20px;">
@@ -465,7 +476,7 @@
                     <div class="card-content">
                         <h3 class="fw-bold" style="color: #1e293b;">Доступ к системе</h3>
                         <p class="text-muted mb-4">
-                            Официальный портал для проверки и оплаты штрафов, отслеживания истории нарушений и получения необходимых справок ГИБДД.
+                            Для просмотра персональной статистики и управления нарушениями необходимо авторизоваться.
                         </p>
                         <div class="mt-4">
                             <a href="{% url 'login' %}" class="btn-action" style="margin-right: 15px;">
@@ -482,17 +493,6 @@
     {% endif %}
 
     <div class="container mt-5 mb-5">
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10 text-center">
-                <div class="intro-card">
-                    <p class="lead fw-bold" style="color: #475569; line-height: 1.6;">
-                        Данная система предназначена для автоматизации процессов фиксации, учета и анализа нарушений ПДД.
-                        Она объединяет в себе удобный интерфейс для сотрудников ГИБДД, водителей и руководителей.
-                    </p>
-                </div>
-            </div>
-        </div>
-
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="feature-card">
