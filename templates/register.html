@@ -129,7 +129,6 @@
                         </div>
                     </div>
 
-                    <!-- ИСПРАВЛЕННЫЙ БЛОК ГОСНОМЕРА -->
                     <div class="mb-4 p-4 rounded" style="background-color: var(--gray-50); border: 1px solid var(--border);">
                         <label class="form-label d-block fw-bold text-muted small mb-3 text-center">Государственный номерной знак</label>
                         
@@ -137,26 +136,27 @@
                             
                             <div style="width: 110px; flex-shrink: 0;">
                                 <label class="small text-muted mb-1 d-block text-center">Страна</label>
-                                <div style="height: 50px;">
-                                    {{ form.country }}
-                                </div>
+                                {{ form.country }}
                             </div>
 
-                            <div class="d-flex align-items-stretch" style="height: 50px; min-width: 280px; background: #fff; border: 2px solid var(--gray-800); border-radius: 4px;">
-                                <div class="p-1 flex-grow-1 d-flex align-items-center justify-content-center" style="border-right: 2px solid var(--gray-800);">
+                            <div class="d-flex align-items-stretch" style="height: 52px; min-width: 280px; background: #fff; border: 2px solid var(--gray-800); border-radius: 4px;">
+                                
+                                <div class="flex-grow-1 d-flex align-items-center justify-content-center" style="border-right: 2px solid var(--gray-800);">
                                     <input type="text" name="license_plate" class="plate-input main-part"
                                            placeholder="А000АА" value="{{ form.license_plate.value|default:'' }}"
-                                           style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 26px; font-family: monospace; font-weight: bold;">
+                                           style="text-transform: uppercase; width: 100%; border: none; outline: none; text-align: center; font-size: 28px; font-family: monospace; font-weight: bold;">
                                 </div>
-                                <div class="p-1 d-flex flex-column justify-content-between align-items-center" style="width: 70px;">
+                                
+                                <div class="d-flex flex-column justify-content-between align-items-center py-1" style="width: 75px;">
                                     <input type="text" name="car_region" class="plate-input region-part"
                                            placeholder="777" maxlength="3" value="{{ form.car_region.value|default:'' }}"
-                                           style="border: none; outline: none; text-align: center; font-size: 20px; font-family: monospace; font-weight: bold; width: 100%;">
-                                    <div class="d-flex align-items-center justify-content-center w-100 pb-1">
-                                        <span id="country_code" style="font-size: 10px; font-weight: bold;">RUS</span>
-                                        <img id="country_flag_img" src="{% static 'rus_flag.png' %}" style="width: 16px; height: 10px; margin-left: 4px;">
+                                           style="border: none; outline: none; text-align: center; font-size: 22px; font-family: monospace; font-weight: bold; width: 100%; padding: 0; background: transparent;">
+                                    <div class="d-flex align-items-center justify-content-center w-100" style="margin-top: -4px;">
+                                        <span id="country_code" style="font-size: 11px; font-weight: bold;">RUS</span>
+                                        <img id="country_flag_img" src="{% static 'rus_flag.png' %}" style="width: 16px; height: 11px; margin-left: 4px;">
                                     </div>
                                 </div>
+                                
                             </div>
 
                         </div>
@@ -212,7 +212,6 @@
     .plate-input:focus { box-shadow: none !important; }
     .text-danger { color: #dc3545 !important; }
 
-    /* Жесткое применение стилей к полям Django */
     .card-body input[type="text"],
     .card-body input[type="password"],
     .card-body input[type="email"],
@@ -240,8 +239,7 @@
         background-color: #ffffff !important;
     }
 
-    /* Исключение для полей госномера (они должны быть прозрачными и без рамок) */
-    .plate-input {
+    .card-body input.plate-input {
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -249,7 +247,6 @@
         border-radius: 0 !important;
     }
     
-    /* Убираем стрелочки у select в некоторых браузерах, чтобы не было лишнего */
     .card-body select {
         cursor: pointer !important;
     }
