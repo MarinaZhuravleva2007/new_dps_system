@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block title %}Формирование справки{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="text-center mb-5">
+                <div class="mb-3">
+                    <span class="badge px-4 py-2" style="background-color: var(--navy-900); border: 1px solid var(--accent); color: var(--accent); font-size: 0.85rem; text-transform: uppercase;">
+                        <i class="fas fa-file-alt me-2"></i> Документы
+                    </span>
+                </div>
+                <h2 class="fw-bold mb-2" style="color: var(--navy-900); font-family: var(--font-heading);">
+                    Справка о нарушениях
+                </h2>
+                <p class="text-muted fs-5">Выберите период и тип отчета для формирования документа</p>
+            </div>
+
+            <div class="card border-0 shadow-sm" style="border-radius: 16px; overflow: hidden;">
+                <div class="card-header border-0 p-4" style="background-color: var(--navy-900); border-bottom: 3px solid var(--accent);">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background-color: rgba(184, 137, 43, 0.2); color: var(--accent);">
+                            <i class="fas fa-print fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 text-white fw-bold">Параметры формирования</h5>
+                            <small style="color: rgba(255,255,255,0.6);">Заполните все поля ниже</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4 p-lg-5 bg-white">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show border-0" role="alert" style="border-radius: 8px; background-color: var(--gray-50); border-left: 4px solid var(--navy-700) !important;">
+                                <i class="fas fa-info-circle me-2" style="color: var(--navy-700);"></i>
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post" id="certificateForm">
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-muted small mb-2">
+                                <i class="fas fa-calendar-alt me-1" style="color: var(--navy-700);"></i> Начало периода
+                            </label>
+                            <input type="date" name="date_from" id="date_from" class="form-control form-control-lg" required
+                                   style="border: 1px solid var(--border-strong); border-radius: 8px; font-family: var(--font-sans);"
+                                   max="{{ today }}">
+                            <small class="text-muted mt-1 d-block" style="font-size: 0.8rem;">Выберите дату начала отчетного периода (не может быть в будущем)</small>
+                            <div class="invalid-feedback fw-bold" id="date_from_error" style="color: var(--danger);"></div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-muted small mb-2">
+                                <i class="fas fa-calendar-check me-1" style="color: var(--navy-700);"></i> Конец периода
+                            </label>
+                            <input type="date" name="date_to" id="date_to" class="form-control form-control-lg" required
+                                   style="border: 1px solid var(--border-strong); border-radius: 8px; font-family: var(--font-sans);"
+                                   max="{{ today }}">
+                            <small class="text-muted mt-1 d-block" style="font-size: 0.8rem;">Выберите дату окончания отчетного периода (не может быть в будущем)</small>
+                            <div class="invalid-feedback fw-bold" id="date_to_error" style="color: var(--danger);"></div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="form-label fw-bold text-muted small mb-2">
+                                <i class="fas fa-chart-line me-1" style="color: var(--navy-700);"></i> Тип отчета
+                            </label>
+                            <select name="report_type" class="form-select form-select-lg" style="border: 1px solid var(--border-strong); border-radius: 8px; font-family: var(--font-sans); cursor: pointer;">
+                                <option value="certificate">Справка о нарушениях</option>
+                            </select>
+                            <small class="text-muted mt-1 d-block" style="font-size: 0.8rem;">Выберите формат формируемого документа</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-lg w-100 py-3 fw-bold" style="background-color: var(--navy-900); color: white; border-radius: 8px; border: none; box-shadow: 0 4px 12px rgba(15, 31, 61, 0.2); transition: all 0.3s ease;">
+                            <i class="fas fa-file-download me-2" style="color: var(--accent);"></i>
+                            Сформировать справку
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <small class="text-muted">
+                    <i class="fas fa-info-circle me-1" style="color: var(--navy-600);"></i>
+                    Документ будет сформирован на основе данных о ваших нарушениях
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control:focus, .form-select:focus {
+        border-color: var(--navy-600) !important;
+        box-shadow: 0 0 0 0.2rem rgba(38, 82, 155, 0.15) !important;
+        outline: none;
+    }
+
+    .form-control:hover, .form-select:hover {
+        border-color: var(--navy-600) !important;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(15, 31, 61, 0.3) !important;
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 35px -12px rgba(15, 31, 61, 0.15) !important;
+    }
+
+    .alert {
+        border: none;
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+    }
+
+    .alert-success { background: rgba(31, 107, 69, 0.1); color: var(--success); }
+    .alert-error, .alert-danger { background: #f8e3e2; color: var(--danger); }
+    .alert-warning { background: var(--accent-soft); color: var(--warning); }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card, .text-center {
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    @media (max-width: 768px) {
+        .card-body { padding: 1.5rem !important; }
+        h2 { font-size: 1.8rem; }
+        .btn { padding: 0.75rem !important; font-size: 1rem !important; }
+        .form-control-lg, .form-select-lg { font-size: 1rem; padding: 0.75rem 1rem; }
+    }
+
+    .form-control.is-invalid {
+        border-color: var(--danger) !important;
+    }
+
+    .invalid-feedback {
+        display: none;
+        margin-top: 0.25rem;
+        font-size: 0.85rem;
+        color: var(--danger);
+    }
+
+    .invalid-feedback.show {
+        display: block;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        const dateFrom = document.getElementById('date_from');
+        const dateTo = document.getElementById('date_to');
+
+        if (dateFrom) dateFrom.setAttribute('max', today);
+        if (dateTo) dateTo.setAttribute('max', today);
+
+        document.getElementById('certificateForm').addEventListener('submit', function(e) {
+            let isValid = true;
+            const dateFromVal = dateFrom.value;
+            const dateToVal = dateTo.value;
+            const todayVal = today;
+
+            dateFrom.classList.remove('is-invalid');
+            dateTo.classList.remove('is-invalid');
+            document.getElementById('date_from_error').classList.remove('show');
+            document.getElementById('date_to_error').classList.remove('show');
+
+            if (dateFromVal && dateFromVal > todayVal) {
+                dateFrom.classList.add('is-invalid');
+                document.getElementById('date_from_error').textContent = 'Дата начала не может быть в будущем';
+                document.getElementById('date_from_error').classList.add('show');
+                isValid = false;
+            }
+
+            if (dateToVal && dateToVal > todayVal) {
+                dateTo.classList.add('is-invalid');
+                document.getElementById('date_to_error').textContent = 'Дата окончания не может быть в будущем';
+                document.getElementById('date_to_error').classList.add('show');
+                isValid = false;
+            }
+
+            if (dateFromVal && dateToVal && dateFromVal > dateToVal) {
+                dateFrom.classList.add('is-invalid');
+                document.getElementById('date_from_error').textContent = 'Дата начала не может быть позже даты окончания';
+                document.getElementById('date_from_error').classList.add('show');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                const firstInvalid = document.querySelector('.is-invalid');
+                if (firstInvalid) {
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstInvalid.focus();
+                }
+            }
+        });
+
+        dateFrom.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
+            document.getElementById('date_from_error').classList.remove('show');
+        });
+
+        dateTo.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
+            document.getElementById('date_to_error').classList.remove('show');
+        });
+    });
+</script>
+{% endblock %}

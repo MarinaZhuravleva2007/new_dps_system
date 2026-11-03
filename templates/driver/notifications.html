@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+
+{% block title %}Уведомления{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9 col-xxl-8">
+            <div class="text-center mb-5">
+                <div class="mb-3">
+                    <span class="badge px-4 py-2" style="background-color: var(--navy-900); border: 1px solid var(--accent); color: var(--accent); font-size: 0.85rem; text-transform: uppercase;">
+                        <i class="fas fa-bell me-2"></i> Центр сообщений
+                    </span>
+                </div>
+                <h2 class="fw-bold mb-2" style="color: var(--navy-900); font-family: var(--font-heading); font-size: 2.2rem;">
+                    Ваши уведомления
+                </h2>
+                <p class="text-muted fs-5 mx-auto" style="max-width: 600px;">
+                    Важная информация о штрафах и статусе их оплаты
+                </p>
+            </div>
+
+            {% if notifications %}
+                <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom" style="border-color: var(--border) !important;">
+                    <div>
+                        <span class="text-muted fw-bold">
+                            <i class="fas fa-envelope me-1" style="color: var(--navy-600);"></i> Всего:
+                            <strong style="color: var(--navy-900);">{{ notifications|length }}</strong>
+                        </span>
+                    </div>
+                    <button class="btn btn-sm px-4 py-2 mark-all-read-btn" style="background-color: var(--navy-800); color: white; border: none; border-radius: 6px; font-weight: 600; transition: all 0.2s ease;">
+                        <i class="fas fa-check-double me-2" style="color: var(--accent);"></i> Отметить все
+                    </button>
+                </div>
+
+                {% for n in notifications %}
+                <div class="notification-card mb-4 {% if not n.is_read %}unread{% else %}read{% endif %}" data-notification-id="{{ n.id }}">
+                    <div class="card border-0 shadow-sm" style="border-radius: 12px; overflow: hidden; {% if not n.is_read %}background: #ffffff; border-left: 4px solid var(--accent) !important;{% else %}background: var(--gray-50); opacity: 0.85;{% endif %}">
+                        <div class="card-body p-4 p-md-4">
+                            <div class="d-flex gap-3 gap-md-4">
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                                         style="width: 56px; height: 56px; background: {% if not n.is_read %}var(--navy-800){% else %}var(--gray-300){% endif %};">
+                                        <i class="fas {% if not n.is_read %}fa-bell{% else %}fa-bell-slash{% endif %} text-white fs-5"></i>
+                                    </div>
+                                </div>
+
+                                <div class="flex-grow-1">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <h5 class="fw-bold mb-1 {% if not n.is_read %}" style="color: var(--navy-900);{% else %}text-muted{% endif %}">
+                                                {{ n.title }}
+                                                {% if not n.is_read %}
+                                                <span class="badge ms-2 px-2 py-1" style="background-color: var(--danger); font-size: 0.7rem; color: white;">
+                                                    Новое
+                                                </span>
+                                                {% endif %}
+                                            </h5>
+                                        </div>
+                                        <small class="text-muted">
+                                            <i class="far fa-clock me-1"></i>
+                                            {{ n.created_at|date:"d.m.Y H:i" }}
+                                        </small>
+                                    </div>
+
+                                    <p class="mb-4 text-muted" style="line-height: 1.6; font-size: 0.95rem; max-width: 100%;">
+                                        {{ n.message }}
+                                        {% if n.message|length < 200 %}
+                                        <span class="fst-italic"> Пожалуйста, примите меры в установленный срок.</span>
+                                        {% endif %}
+                                    </p>
+
+                                    <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                                        {% if n.violation %}
+                                        <a href="{% url 'fine_detail' n.violation.id %}" class="btn px-3 py-2" style="background-color: var(--navy-900); color: white; border-radius: 6px; font-weight: 600;">
+                                            <i class="fas fa-file-alt me-2" style="color: var(--accent);"></i> Подробнее о штрафе
+                                        </a>
+                                        {% endif %}
+
+                                        {% if not n.is_read %}
+                                        <button class="btn px-3 py-2 mark-read-btn" data-id="{{ n.id }}" style="border: 1px solid var(--border-strong); color: var(--navy-900); background: transparent; border-radius: 6px; font-weight: 600;">
+                                            <i class="fas fa-check me-1"></i> Прочитано
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-5 my-4">
+                    <div class="mb-4">
+                        <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle"
+                             style="width: 120px; height: 120px; background-color: var(--gray-100);">
+                            <i class="fas fa-bell-slash" style="font-size: 4rem; color: var(--gray-400);"></i>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mb-3" style="color: var(--navy-900);">Тихо и спокойно</h3>
+                    <p class="text-muted mb-4 mx-auto" style="max-width: 500px; font-size: 1.05rem;">
+                        У вас пока нет уведомлений.<br>
+                        Новые сообщения появятся здесь автоматически.
+                    </p>
+                    <div class="text-muted small">
+                        <i class="fas fa-info-circle me-1" style="color: var(--navy-600);"></i> Уведомления приходят при начислении штрафов
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .notification-card .card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .notification-card:hover .card {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 25px rgba(11, 31, 58, 0.08) !important;
+    }
+
+    .notification-card.unread .card {
+        animation: gentlePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes gentlePulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(184, 137, 43, 0.2); }
+        50% { box-shadow: 0 0 0 6px rgba(184, 137, 43, 0); }
+    }
+
+    .notification-card {
+        animation: slideUp 0.4s ease-out;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mark-read-btn:hover {
+        background-color: var(--gray-100) !important;
+        border-color: var(--navy-800) !important;
+    }
+
+    .mark-all-read-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(15, 31, 61, 0.2);
+        background-color: var(--navy-900);
+    }
+
+    .btn-loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .btn-loading i {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+        .card-body { padding: 1.25rem !important; }
+        .rounded-circle { width: 48px !important; height: 48px !important; }
+        .rounded-circle i { font-size: 1.2rem !important; }
+        h5 { font-size: 1.1rem; }
+        p { font-size: 0.9rem !important; }
+        .btn { padding: 0.4rem 0.8rem !important; font-size: 0.85rem; }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function markAsRead(notificationId, buttonElement) {
+        const card = buttonElement.closest('.notification-card');
+
+        buttonElement.classList.add('btn-loading');
+        const originalText = buttonElement.innerHTML;
+        buttonElement.innerHTML = '<i class="fas fa-spinner me-1"></i> ...';
+
+        setTimeout(() => {
+            card.classList.remove('unread');
+            card.classList.add('read');
+
+            const cardDiv = card.querySelector('.card');
+            cardDiv.style.background = 'var(--gray-50)';
+            cardDiv.style.opacity = '0.85';
+            cardDiv.style.borderLeft = 'none';
+
+            const iconDiv = card.querySelector('.rounded-circle');
+            iconDiv.style.background = 'var(--gray-300)';
+            const icon = iconDiv.querySelector('i');
+            icon.classList.remove('fa-bell');
+            icon.classList.add('fa-bell-slash');
+
+            const badge = card.querySelector('.badge');
+            if (badge && badge.textContent.includes('Новое')) badge.remove();
+
+            buttonElement.remove();
+
+            const title = card.querySelector('h5');
+            title.classList.add('text-muted');
+            title.style.color = '';
+
+            showToast('Отмечено как прочитанное', 'success');
+        }, 400);
+    }
+
+    function markAllAsRead() {
+        const unreadButtons = document.querySelectorAll('.mark-read-btn');
+        if (unreadButtons.length === 0) {
+            showToast('Нет непрочитанных уведомлений', 'info');
+            return;
+        }
+
+        const allBtn = document.querySelector('.mark-all-read-btn');
+        allBtn.classList.add('btn-loading');
+        const originalText = allBtn.innerHTML;
+        allBtn.innerHTML = '<i class="fas fa-spinner me-1"></i> ...';
+
+        setTimeout(() => {
+            unreadButtons.forEach(button => {
+                const card = button.closest('.notification-card');
+                card.classList.remove('unread');
+                card.classList.add('read');
+
+                const cardDiv = card.querySelector('.card');
+                cardDiv.style.background = 'var(--gray-50)';
+                cardDiv.style.opacity = '0.85';
+                cardDiv.style.borderLeft = 'none';
+
+                const iconDiv = card.querySelector('.rounded-circle');
+                iconDiv.style.background = 'var(--gray-300)';
+                const icon = iconDiv.querySelector('i');
+                icon.classList.remove('fa-bell');
+                icon.classList.add('fa-bell-slash');
+
+                const badge = card.querySelector('.badge');
+                if (badge && badge.textContent.includes('Новое')) badge.remove();
+
+                button.remove();
+
+                const title = card.querySelector('h5');
+                title.classList.add('text-muted');
+            });
+
+            allBtn.classList.remove('btn-loading');
+            allBtn.innerHTML = originalText;
+            showToast('Все уведомления отмечены прочитанными', 'success');
+        }, 600);
+    }
+
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed bottom-0 end-0 p-3';
+        toast.style.zIndex = '9999';
+        toast.style.animation = 'slideUp 0.3s ease-out';
+        toast.innerHTML = `
+            <div class="toast align-items-center text-white border-0 show" role="alert" style="background: var(--navy-900); border-radius: 8px;" data-bs-autohide="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2" style="color: var(--accent);"></i>
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+
+        const closeBtn = toast.querySelector('.btn-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            });
+        }
+    }
+
+    document.querySelectorAll('.mark-read-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const notificationId = this.getAttribute('data-id');
+            markAsRead(notificationId, this);
+        });
+    });
+
+    const markAllBtn = document.querySelector('.mark-all-read-btn');
+    if (markAllBtn) {
+        markAllBtn.addEventListener('click', markAllAsRead);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,388 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3" style="color: var(--navy-900);">
+                <i class="fas fa-phone-alt me-3" style="color: var(--accent);"></i>Контактная информация
+            </h1>
+            <p class="lead text-muted">Свяжитесь с нами любым удобным способом</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-circle mb-3 mx-auto" style="background-color: rgba(179, 38, 30, 0.1); color: var(--danger);">
+                            <i class="fas fa-phone-alt fa-2x"></i>
+                        </div>
+                        <h3 class="card-title fw-bold" style="color: var(--navy-900);">Горячая линия</h3>
+                        <p class="text-muted mb-4">По Саратовской области</p>
+
+                        <div class="phone-number mb-3">
+                            <a href="tel:88002227447" class="text-decoration-none">
+                                <span class="display-6 fw-bold" style="color: var(--danger);">8 (800) 222-74-47</span>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-info mt-3 border-0" style="background-color: var(--gray-50); color: var(--navy-800);">
+                            <i class="fas fa-info-circle me-2"></i>Звонок по России бесплатный
+                        </div>
+
+                        <div class="work-hours mt-3 text-muted">
+                            <i class="fas fa-clock me-2" style="color: var(--navy-700);"></i>
+                            <strong>Время работы:</strong> Ежедневно с 08:00 до 20:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-circle mb-3 mx-auto" style="background-color: rgba(22, 48, 92, 0.1); color: var(--navy-800);">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <h3 class="card-title fw-bold" style="color: var(--navy-900);">Адрес управления</h3>
+                        <p class="text-muted mb-4">РЭО ГИБДД УМВД России</p>
+
+                        <div class="address-info text-start">
+                            <div class="mb-3">
+                                <i class="fas fa-building me-2" style="color: var(--navy-700);"></i>
+                                <strong style="color: var(--gray-800);">6-й Соколовогорский пр., Саратов, Саратовская обл., 410038</strong>
+                            </div>
+                            <div class="schedule-box p-3 rounded" style="background-color: var(--gray-50); border-left: 4px solid var(--accent);">
+                                <i class="fas fa-calendar-alt me-2" style="color: var(--success);"></i>
+                                <strong style="color: var(--gray-800);">График работы:</strong><br>
+                                <span class="badge me-2 mt-2" style="background-color: var(--navy-800); color: white;">Вторник - Пятница</span> <span class="text-muted">08:00–17:00</span><br>
+                                <span class="badge me-2 mt-2" style="background-color: var(--success); color: white;">Суббота</span> <span class="text-muted">08:00–16:00</span><br>
+                                <span class="badge me-2 mt-2" style="background-color: var(--gray-500); color: white;">Воскресенье</span> <span class="text-muted">Выходной</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-5">
+            <div class="card-header text-white p-4" style="background-color: var(--navy-900); border-bottom: 3px solid var(--accent);">
+                <h3 class="mb-0 text-center">
+                    <i class="fas fa-headset me-2" style="color: var(--accent);"></i>Техническая поддержка системы
+                </h3>
+            </div>
+            <div class="card-body p-4" style="background-color: #ffffff;">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="support-info mb-4">
+                            <div class="mb-4">
+                                <h5 style="color: var(--navy-800);">
+                                    <i class="fas fa-envelope me-2" style="color: var(--accent);"></i>Электронная почта
+                                </h5>
+                                <a href="mailto:marina.zhuravleva.07@inbox.ru" class="text-decoration-none fs-5" style="color: var(--navy-700);">
+                                    <i class="fas fa-inbox me-2"></i>marina.zhuravleva.07@inbox.ru
+                                </a>
+                                <p class="text-muted mt-2">Ответим в течение 24 часов</p>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--navy-800);">
+                                    <i class="fas fa-exclamation-triangle me-2" style="color: var(--danger);"></i>Срочная поддержка
+                                </h5>
+                                <p class="text-muted">Нужно в срочном порядке подтвердить личность сотрудника?</p>
+                                <div class="phone-number">
+                                    <a href="tel:+79033833236" class="text-decoration-none">
+                                        <span class="display-6 fw-bold" style="color: var(--danger);">+7 (903) 383 32-36</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center mt-4 mt-md-0">
+                        <div class="developer-card p-4 rounded" style="background-color: var(--gray-50); border-left: 4px solid var(--navy-700);">
+                            <div class="developer-avatar mx-auto mb-3">
+                                <i class="fas fa-user-circle fa-4x" style="color: var(--navy-700);"></i>
+                            </div>
+                            <h4 class="fw-bold" style="color: var(--navy-900);">Главный администратор</h4>
+                            <p class="lead mb-2" style="color: var(--gray-800);">Журавлева Марина Андреевна</p>
+                            <p class="text-muted">Разработчик и системный администратор</p>
+                            <div class="social-links mt-3">
+                                <a href="https://t.me/ranxtaro" target="_blank" class="btn btn-sm" style="border: 1px solid var(--navy-700); color: var(--navy-700);">
+                                    <i class="fab fa-telegram"></i> Telegram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-5">
+            <div class="card-header text-white p-4" style="background-color: var(--navy-900); border-bottom: 3px solid var(--accent);">
+                <h3 class="mb-0 text-center">
+                    <i class="fas fa-question-circle me-2" style="color: var(--accent);"></i>Часто задаваемые вопросы
+                </h3>
+                <p class="text-center mt-2 mb-0" style="color: rgba(255,255,255,0.7);">Ответы на самые популярные вопросы</p>
+            </div>
+            <div class="card-body p-4" style="background-color: #ffffff;">
+                <div class="faq-container">
+                    <div class="faq-item mb-3">
+                        <div class="faq-question" data-target="faq1">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0" style="color: var(--navy-900);">
+                                    <i class="fas fa-question-circle me-2" style="color: var(--navy-600);"></i>
+                                    Как записаться на прием в ГИБДД?
+                                </h5>
+                                <i class="fas fa-chevron-down faq-icon" style="color: var(--navy-600);"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer" id="faq1">
+                            <div class="answer-content">
+                                <p>Записаться на прием можно несколькими способами:</p>
+                                <ul>
+                                    <li>Через портал <strong>Госуслуги</strong> (рекомендуемый способ)</li>
+                                    <li>По телефону горячей линии: <strong>8 (800) 222-74-47</strong></li>
+                                    <li>При личном посещении отделения ГИБДД</li>
+                                </ul>
+                                <p class="mb-0 text-muted small">При записи через Госуслуги выберите удобное время и дату посещения.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item mb-3">
+                        <div class="faq-question" data-target="faq2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0" style="color: var(--navy-900);">
+                                    <i class="fas fa-question-circle me-2" style="color: var(--navy-600);"></i>
+                                    Какие документы нужны для регистрации автомобиля?
+                                </h5>
+                                <i class="fas fa-chevron-down faq-icon" style="color: var(--navy-600);"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer" id="faq2">
+                            <div class="answer-content">
+                                <p>Для регистрации автомобиля необходимо предоставить:</p>
+                                <ul>
+                                    <li>Паспорт гражданина РФ</li>
+                                    <li>Паспорт транспортного средства (ПТС)</li>
+                                    <li>Договор купли-продажи или другой документ о праве собственности</li>
+                                    <li>Полис ОСАГО</li>
+                                    <li>Квитанция об оплате госпошлины</li>
+                                </ul>
+                                <p class="mb-0 text-muted small">Если автомобиль новый, также потребуется сертификат соответствия.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item mb-3">
+                        <div class="faq-question" data-target="faq3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0" style="color: var(--navy-900);">
+                                    <i class="fas fa-question-circle me-2" style="color: var(--navy-600);"></i>
+                                    Как оплатить штраф за нарушение ПДД?
+                                </h5>
+                                <i class="fas fa-chevron-down faq-icon" style="color: var(--navy-600);"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer" id="faq3">
+                            <div class="answer-content">
+                                <p>Оплатить штраф можно следующими способами:</p>
+                                <ul>
+                                    <li><strong>Госуслуги</strong> - самый быстрый способ, скидка 50% при оплате в первые 20 дней</li>
+                                    <li><strong>Сбербанк Онлайн</strong> - через мобильное приложение или терминал</li>
+                                    <li><strong>Отделение банка</strong> - по квитанции</li>
+                                    <li><strong>Почта России</strong> - по почтовому извещению</li>
+                                </ul>
+                                <div class="alert mt-3 border-0" style="background-color: rgba(184, 137, 43, 0.1); color: var(--warning);">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    <strong>Важно:</strong> Оплатите штраф в течение 60 дней с момента вступления постановления в силу.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item mb-3">
+                        <div class="faq-question" data-target="faq4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0" style="color: var(--navy-900);">
+                                    <i class="fas fa-question-circle me-2" style="color: var(--navy-600);"></i>
+                                    Как восстановить водительское удостоверение при утере?
+                                </h5>
+                                <i class="fas fa-chevron-down faq-icon" style="color: var(--navy-600);"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer" id="faq4">
+                            <div class="answer-content">
+                                <p>Для восстановления водительского удостоверения:</p>
+                                <ol>
+                                    <li>Подайте заявление через Госуслуги или лично в ГИБДД</li>
+                                    <li>Оплатите госпошлину (2000 рублей)</li>
+                                    <li>Предоставьте медицинскую справку (если срок действия истек)</li>
+                                    <li>Получите новое удостоверение в назначенный день</li>
+                                </ol>
+                                <p class="mb-0 text-muted small">Срок изготовления: от 1 до 5 рабочих дней.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" data-target="faq5">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0" style="color: var(--navy-900);">
+                                    <i class="fas fa-question-circle me-2" style="color: var(--navy-600);"></i>
+                                    Как проверить наличие неоплаченных штрафов?
+                                </h5>
+                                <i class="fas fa-chevron-down faq-icon" style="color: var(--navy-600);"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer" id="faq5">
+                            <div class="answer-content">
+                                <p>Проверить штрафы можно через:</p>
+                                <ul>
+                                    <li><strong>Госуслуги</strong> - в разделе "Штрафы ПДД"</li>
+                                    <li><strong>Сайт ГИБДД</strong> - по номеру водительского удостоверения или СТС</li>
+                                    <li><strong>Мобильные приложения</strong> (Яндекс.Штрафы, Штрафы ГИБДД и др.)</li>
+                                    <li><strong>Банкоматы Сбербанка</strong> - по номеру постановления</li>
+                                </ul>
+                                <div class="alert mt-3 border-0" style="background-color: rgba(38, 82, 155, 0.1); color: var(--navy-700);">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    <strong>Совет:</strong> Подключите уведомления в приложении Госуслуги, чтобы получать информацию о новых штрафах.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .icon-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 16px;
+    }
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(11, 31, 58, 0.1) !important;
+    }
+    .phone-number a {
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    .phone-number a:hover {
+        transform: scale(1.05);
+    }
+    .developer-card {
+        transition: all 0.3s ease;
+    }
+    .developer-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .badge {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        font-weight: 600;
+    }
+    .faq-item {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        transition: all 0.3s ease;
+        border: 1px solid var(--gray-200);
+    }
+    .faq-item:hover {
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        border-color: var(--gray-300);
+    }
+    .faq-question {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .faq-question:hover {
+        background: var(--gray-100);
+    }
+    .faq-question.active .faq-icon {
+        transform: rotate(180deg);
+    }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        background: white;
+    }
+    .faq-answer.active {
+        max-height: 500px;
+        transition: max-height 0.6s ease-in;
+    }
+    .answer-content {
+        padding: 20px 25px;
+        border-top: 1px solid var(--gray-200);
+    }
+    .answer-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        color: var(--gray-600);
+    }
+    .answer-content ul, .answer-content ol {
+        margin-bottom: 15px;
+        padding-left: 20px;
+    }
+    .answer-content li {
+        margin-bottom: 8px;
+        color: var(--gray-600);
+    }
+    .answer-content strong {
+        color: var(--navy-800);
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .card {
+        animation: fadeInUp 0.5s ease;
+    }
+    @media (max-width: 768px) {
+        .display-6 { font-size: 1.5rem; }
+        .icon-circle { width: 60px; height: 60px; }
+        .icon-circle i { font-size: 1.5rem; }
+        .faq-question { padding: 15px 20px; }
+        .faq-question h5 { font-size: 1rem; }
+        .answer-content { padding: 15px 20px; }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const answer = document.getElementById(targetId);
+                faqQuestions.forEach(q => {
+                    if (q !== this) {
+                        const otherTarget = q.getAttribute('data-target');
+                        const otherAnswer = document.getElementById(otherTarget);
+                        q.classList.remove('active');
+                        otherAnswer.classList.remove('active');
+                    }
+                });
+                this.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+    });
+</script>
+{% endblock %}
