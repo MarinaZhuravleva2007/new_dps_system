@@ -12,380 +12,210 @@
 
 <style>
     :root {
-        --gray-50:  #f5f6f8;
-        --gray-100: #eceef2;
-        --gray-200: #dfe3e9;
-        --gray-300: #c8ced8;
-        --gray-400: #9aa3b2;
-        --gray-500: #6b7585;
-        --gray-600: #4a5361;
-        --gray-700: #343c48;
-        --gray-800: #232a34;
-        --gray-900: #161b22;
+        --gray-50:  #f8f9fa;
+        --gray-100: #f1f3f5;
+        --gray-200: #e9ecef;
+        --gray-600: #868e96;
+        --gray-800: #343a40;
         --navy-900: #0f1f3d;
-        --navy-800: #16305c;
-        --navy-700: #1d3f7a;
-        --navy-600: #26529b;
         --accent:   #b8892b;
-        --text-primary:   var(--gray-800);
-        --text-secondary: var(--gray-500);
-        --bg-body:    var(--gray-50);
         --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         --font-heading: 'Montserrat', sans-serif;
     }
 
     body {
         font-family: var(--font-sans);
-        background-color: var(--bg-body);
-        color: var(--text-primary);
+        background-color: #ffffff;
+        color: var(--gray-800);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
     }
 
+    /* Чистая и легкая шапка */
     .top-header {
-        min-height: 380px;
-        background: linear-gradient(to bottom, rgba(8, 18, 38, 0.55) 0%, rgba(8, 18, 38, 0.7) 50%, rgba(8, 18, 38, 0.9) 85%, rgba(8, 18, 38, 0.98) 100%), url("{% static 'dps_dps(1).jpg' %}");
+        min-height: 280px;
+        background: linear-gradient(to bottom, rgba(15, 31, 61, 0.6) 0%, rgba(15, 31, 61, 0.95) 100%), url("{% static 'dps_dps(1).jpg' %}");
         background-size: cover;
         background-position: center;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 40px 20px;
+        text-align: center;
     }
-    .header-welcome { text-align: center; max-width: 760px; }
-    .header-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(184, 137, 43, 0.2); border: 1px solid rgba(184, 137, 43, 0.6); color: #e8c88a; padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
-    .header-welcome h1 { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 800; color: #ffffff; margin: 0 0 16px; line-height: 1.2; }
-    .header-welcome p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin: 0; }
+    .header-welcome h1 { 
+        font-family: var(--font-heading); 
+        font-size: 2.2rem; 
+        font-weight: 800; 
+        color: #ffffff; 
+        margin: 0 0 12px; 
+        line-height: 1.2; 
+    }
+    .header-welcome p { 
+        font-size: 1rem; 
+        color: rgba(255,255,255,0.7); 
+        margin: 0; 
+    }
 
+    /* Навигация */
     .navbar-custom {
         position: sticky;
         top: 0;
         z-index: 1030;
-        background-color: #0f1f3d !important;
-        border-bottom: 3px solid #b8892b !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        background-color: #ffffff !important;
+        border-bottom: 1px solid var(--gray-200) !important;
+        padding: 12px 0 !important;
     }
-
     .navbar-custom .nav-link {
-        color: rgba(255, 255, 255, 0.82) !important;
+        color: var(--gray-800) !important;
         font-weight: 500;
-        font-size: 0.88rem;
-        transition: 0.3s;
-        white-space: nowrap;
-        padding: 0.5rem 0.75rem !important;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem !important;
     }
-
-    .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active {
-        color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 6px;
-    }
-
-    .navbar-custom .nav-link i { color: #b8892b; }
-
+    .navbar-custom .nav-link:hover { color: var(--accent) !important; }
+    .navbar-custom .nav-link i { color: var(--accent); margin-right: 6px; }
     .navbar-custom .navbar-brand {
-        color: white !important;
+        color: var(--navy-900) !important;
         font-family: var(--font-heading);
-        font-size: 1.25rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding-right: 1.5rem;
-        border-right: 1px solid rgba(255,255,255,0.15);
-        margin-right: 1rem;
-    }
-
-    .navbar-nav { gap: 0.5rem; }
-    @media (min-width: 992px) { .navbar-nav { gap: 1rem; } }
-
-    .dropdown-menu-dark {
-        background-color: #0f1f3d;
-        border: 1px solid #1d3f7a;
-        border-radius: 8px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    }
-    .dropdown-menu-dark .dropdown-item {
-        color: rgba(255, 255, 255, 0.82);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 0.55rem 0.85rem;
-    }
-    .dropdown-menu-dark .dropdown-item:hover { background-color: #b8892b; color: #0f1f3d; }
-    .dropdown-menu-dark .dropdown-item i { color: #b8892b; }
-    .dropdown-menu-dark .dropdown-item:hover i { color: #0f1f3d; }
-
-    .notification-badge {
-        position: absolute;
-        top: -2px;
-        right: 2px;
-        background-color: #b3261e;
-        color: white;
-        border-radius: 10px;
-        min-width: 16px;
-        height: 16px;
-        font-size: 10px;
-        font-weight: 700;
-        line-height: 16px;
-        text-align: center;
-    }
-
-    .position-relative { position: relative; }
-
-    .warning-banner {
-        background-color: #fff3cd;
-        border-left: 4px solid #ffc107;
-        padding: 10px 15px;
-        margin-bottom: 20px;
-        border-radius: 5px;
+        font-size: 1.3rem;
+        font-weight: 800;
         display: flex;
         align-items: center;
         gap: 10px;
     }
-    .warning-banner i { color: #ffc107; font-size: 1.2rem; }
-    .warning-banner a { color: #0d6efd; text-decoration: none; font-weight: bold; }
-    .warning-banner a:hover { text-decoration: underline; }
 
-    .role-chip {
-        display: inline-flex;
-        align-items: center;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        border: 1px solid transparent;
-        white-space: nowrap;
-    }
-    .role-driver { background: rgba(38, 82, 155, 0.25); border-color: rgba(56, 130, 220, 0.4); color: #93bbf0; }
-    .role-inspector { background: rgba(184, 137, 43, 0.25); border-color: rgba(216, 166, 64, 0.45); color: #e8c88a; }
-    .role-manager { background: rgba(31, 107, 69, 0.28); border-color: rgba(56, 168, 112, 0.45); color: #8fd7b0; }
-
-    .site-footer {
-        background: #0f1f3d;
-        color: rgba(255, 255, 255, 0.85);
-        padding: 40px 0 30px;
-        margin-top: auto;
+    /* Блок авторизации (Чистый, без "квадратов") */
+    .auth-clean-wrap {
+        max-width: 440px;
+        margin: 4rem auto;
         text-align: center;
-        border-top: 3px solid #b8892b;
     }
-    .footer-brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
-    .footer-icon { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #b8892b; color: #0f1f3d; border-radius: 6px; font-size: 0.9rem; }
-    .site-footer p { margin: 0 0 4px; font-size: 0.9rem; font-weight: 500; }
-    .site-footer small { color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; }
-
-    .custom-auth-card {
-        background: #ffffff;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        box-shadow: 0 20px 40px rgba(11, 31, 58, 0.08), 0 1px 3px rgba(0,0,0,0.05);
-        padding: 3.5rem 3rem;
-        text-align: center;
-        max-width: 680px;
-        margin: 3rem auto;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .custom-auth-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 25px 50px rgba(11, 31, 58, 0.12), 0 1px 3px rgba(0,0,0,0.05);
-    }
-
-    .custom-auth-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #f9f9fa 0%, #eceef2 100%);
-        border: 2px solid rgba(184, 137, 43, 0.3);
-        color: var(--accent);
+    
+    .auth-clean-icon {
+        width: 64px;
+        height: 64px;
+        background-color: var(--gray-50);
+        color: var(--navy-900);
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.2rem;
+        font-size: 1.5rem;
         margin-bottom: 1.5rem;
-        box-shadow: 0 10px 20px rgba(184, 137, 43, 0.15);
     }
 
-    .custom-auth-card h2 {
+    .auth-clean-wrap h2 {
         font-family: var(--font-heading);
         font-weight: 800;
         color: var(--navy-900);
-        font-size: 1.8rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
     }
 
-    .custom-auth-card p.subtitle {
-        color: var(--text-secondary);
+    .auth-clean-wrap p.subtitle {
+        color: var(--gray-600);
         font-size: 1rem;
         line-height: 1.5;
-        margin-bottom: 2rem;
-        padding: 0 1rem;
-    }
-
-    .custom-btn-group {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
         margin-bottom: 2.5rem;
     }
 
-    .custom-btn-primary {
-        flex: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.85rem 1.5rem;
-        background: var(--navy-900);
-        color: #fff !important;
-        font-weight: 600;
-        font-size: 1rem;
-        border-radius: 10px;
-        text-decoration: none;
-        border: 1px solid var(--navy-900);
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(15, 31, 61, 0.2);
-    }
-
-    .custom-btn-primary:hover {
-        background: var(--navy-800);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(15, 31, 61, 0.3);
-    }
-
-    .custom-btn-outline {
-        flex: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.85rem 1.5rem;
-        background: transparent;
-        color: var(--navy-900) !important;
-        font-weight: 600;
-        font-size: 1rem;
-        border-radius: 10px;
-        text-decoration: none;
-        border: 1px solid var(--border-strong);
-        transition: all 0.2s ease;
-    }
-
-    .custom-btn-outline:hover {
-        background: var(--gray-50);
-        border-color: var(--gray-400);
-        transform: translateY(-2px);
-    }
-
-    .custom-roles-wrap {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        border-top: 1px solid var(--gray-100);
-        padding-top: 2rem;
-    }
-
-    .custom-role-item {
+    .auth-clean-buttons {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--text-secondary);
-        font-size: 0.85rem;
+        gap: 12px;
+        margin-bottom: 2.5rem;
+    }
+
+    .btn-clean-primary {
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--navy-900);
+        color: #ffffff !important;
         font-weight: 600;
+        font-size: 1.05rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+        border: none;
     }
+    .btn-clean-primary:hover { background-color: #1a365d; }
 
-    .custom-role-item i {
-        font-size: 1.4rem;
-        color: var(--navy-600);
-        transition: color 0.2s ease, transform 0.2s ease;
+    .btn-clean-outline {
+        width: 100%;
+        padding: 1rem;
+        background-color: transparent;
+        color: var(--navy-900) !important;
+        font-weight: 600;
+        font-size: 1.05rem;
+        border-radius: 8px;
+        text-decoration: none;
+        border: 1px solid var(--gray-200);
+        transition: background-color 0.2s ease;
     }
+    .btn-clean-outline:hover { background-color: var(--gray-50); }
 
-    .custom-role-item:hover i {
-        color: var(--accent);
-        transform: scale(1.1);
+    /* Роли в самом низу, маленькие и аккуратные */
+    .auth-clean-roles {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
     }
+    .auth-clean-role {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--gray-600);
+    }
+    .auth-clean-role i { color: var(--accent); }
 
-    /* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ===== */
+    /* Футер */
+    .site-footer {
+        background-color: var(--gray-50);
+        border-top: 1px solid var(--gray-200);
+        padding: 30px 0;
+        margin-top: auto;
+        text-align: center;
+    }
+    .site-footer p { margin: 0; font-size: 0.85rem; color: var(--gray-600); }
+
+    /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
     @media (max-width: 991px) {
         .top-header {
-            min-height: 250px;
+            min-height: 200px;
             padding: 30px 15px;
         }
-        .header-welcome h1 {
-            font-size: 1.8rem;
-        }
-        .header-welcome p {
-            font-size: 0.95rem;
-        }
-        .header-badge {
-            font-size: 0.7rem;
-            padding: 4px 12px;
-            margin-bottom: 15px;
-        }
-        .navbar-custom .navbar-brand {
-            border-right: none;
-            padding-right: 0;
-            margin-right: 0;
-            font-size: 1.1rem;
-        }
-        .navbar-custom .nav-link {
-            padding: 0.75rem 1rem !important;
-        }
+        .header-welcome h1 { font-size: 1.6rem; }
+        .header-welcome p { font-size: 0.9rem; }
+        
         .navbar-collapse {
-            background-color: #0f1f3d;
+            background-color: #ffffff;
             padding: 1rem;
             border-radius: 8px;
-            margin-top: 10px;
-            border: 1px solid #1d3f7a;
-        }
-        .navbar-nav {
-            gap: 0.2rem;
+            margin-top: 15px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
         .navbar-nav .nav-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--gray-100);
         }
-        .navbar-nav .nav-item:last-child {
-            border-bottom: none;
-        }
+        .navbar-nav .nav-item:last-child { border-bottom: none; }
         .dropdown-menu-dark {
+            background-color: var(--gray-50);
             border: none;
-            background-color: rgba(0,0,0,0.2);
-            padding-left: 1rem;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
+            box-shadow: none;
         }
-        .user-dropdown {
-            padding: 0.75rem 0 !important;
-        }
-        .custom-auth-card {
-            padding: 2.5rem 1.5rem;
+        .dropdown-menu-dark .dropdown-item { color: var(--navy-900); }
+        .dropdown-menu-dark .dropdown-item i { color: var(--accent); }
+        
+        .auth-clean-wrap {
             margin: 2rem auto;
+            padding: 0 1rem;
         }
-        .custom-auth-icon {
-            width: 64px;
-            height: 64px;
-            font-size: 1.8rem;
-        }
-        .custom-auth-card h2 {
-            font-size: 1.5rem;
-        }
-        .custom-btn-group {
-            flex-direction: column;
-        }
-        .custom-roles-wrap {
-            gap: 1rem;
-        }
-        .custom-role-item {
-            font-size: 0.75rem;
-        }
-        .custom-role-item i {
-            font-size: 1.2rem;
-        }
+        .auth-clean-wrap h2 { font-size: 1.5rem; }
+        .auth-clean-wrap p.subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
     }
 </style>
 </head>
@@ -394,17 +224,15 @@
 
 <header class="top-header">
     <div class="header-welcome">
-        <span class="header-badge"><i class="fas fa-shield-halved"></i> Официальный портал</span>
-        <h1>Добро пожаловать в систему учёта нарушений ПДД</h1>
-        <p>Единый портал ГИБДД. Проверяйте штрафы, создавайте отчёты и следите за статусом своих нарушений.</p>
+        <h1>Система учёта нарушений ПДД</h1>
+        <p>Официальный портал Госавтоинспекции</p>
     </div>
 </header>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
   <div class="container">
     <a class="navbar-brand" href="/">
-        <span class="brand-icon" style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #b8892b; color: #0f1f3d; border-radius: 6px; font-size: 0.9rem;"><i class="fas fa-shield-alt"></i></span>
-        <span>🚔 ГИБДД</span>
+        <i class="fas fa-shield-alt" style="color: var(--accent);"></i> ГИБДД
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -414,8 +242,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="{% url 'pdd_rules' %}"><i class="fas fa-book"></i> ПДД</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'fines_info' %}"><i class="fas fa-gavel"></i> Штрафы КоАП</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'payment_info' %}"><i class="fas fa-credit-card"></i> Как оплачивать</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'fines_info' %}"><i class="fas fa-gavel"></i> Штрафы</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'payment_info' %}"><i class="fas fa-credit-card"></i> Оплата</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}"><i class="fas fa-phone"></i> Контакты</a></li>
 
         {% if user.is_authenticated %}
@@ -426,7 +254,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{% url 'my_violations' %}"><i class="fas fa-list"></i> Все штрафы</a></li>
-                        <li><a class="dropdown-item" href="{% url 'generate_certificate' %}"><i class="fas fa-file-alt"></i> Справка о нарушениях</a></li>
+                        <li><a class="dropdown-item" href="{% url 'generate_certificate' %}"><i class="fas fa-file-alt"></i> Справка</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -437,20 +265,18 @@
                         {% endif %}
                     </a>
                 </li>
-
             {% elif user.role == 'inspector' %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'create_violation' %}"><i class="fas fa-plus-circle"></i> Новое нарушение</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'inspector_dashboard' %}"><i class="fas fa-chart-line"></i> Моя статистика</a></li>
-
+                <li class="nav-item"><a class="nav-link" href="{% url 'inspector_dashboard' %}"><i class="fas fa-chart-line"></i> Статистика</a></li>
             {% elif user.role == 'manager' %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                         <i class="fas fa-chart-bar"></i> Аналитика
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="{% url 'manager_dashboard' %}"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
-                        <li><a class="dropdown-item" href="{% url 'manager_violations_stats' %}"><i class="fas fa-chart-line"></i> Статистика нарушений</a></li>
-                        <li><a class="dropdown-item" href="{% url 'top_violators' %}"><i class="fas fa-exclamation-triangle"></i> Топ нарушителей</a></li>
+                        <li><a class="dropdown-item" href="{% url 'manager_dashboard' %}"><i class="fas fa-tachometer-alt"></i> Панель</a></li>
+                        <li><a class="dropdown-item" href="{% url 'manager_violations_stats' %}"><i class="fas fa-chart-line"></i> Статистика</a></li>
+                        <li><a class="dropdown-item" href="{% url 'top_violators' %}"><i class="fas fa-exclamation-triangle"></i> Нарушители</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -458,125 +284,87 @@
                         <i class="fas fa-users"></i> Сотрудники
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="{% url 'manager_inspector_list' %}"><i class="fas fa-list"></i> Список сотрудников</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-book"></i> Справочники
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="{% url 'manage_articles' %}"><i class="fas fa-gavel"></i> Статьи КоАП</a></li>
+                        <li><a class="dropdown-item" href="{% url 'manager_inspector_list' %}"><i class="fas fa-list"></i> Список</a></li>
                     </ul>
                 </li>
             {% endif %}
         {% endif %}
       </ul>
 
-      <div class="d-flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
         {% if user.is_authenticated %}
         <div class="dropdown">
-            <a class="nav-link dropdown-toggle user-dropdown" href="#" role="button" data-bs-toggle="dropdown" style="display: flex; align-items: center; gap: 8px; color: #fff !important; text-decoration: none;">
-                <i class="fas fa-user-circle fa-lg" style="color: #b8892b;"></i> {{ user.full_name|default:user.username }}
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="display: flex; align-items: center; gap: 8px; color: var(--navy-900) !important; text-decoration: none;">
+                <i class="fas fa-user-circle fa-lg" style="color: var(--accent);"></i> {{ user.full_name|default:user.username }}
             </a>
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-id-card"></i> Мой профиль</a></li>
-                <li><a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-edit"></i> Редактировать профиль</a></li>
-                <li><hr class="dropdown-divider" style="border-color: #1d3f7a;"></li>
+                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-id-card"></i> Профиль</a></li>
+                <li><a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-edit"></i> Редактировать</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li>
                     <form action="{% url 'logout' %}" method="post" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit" class="dropdown-item" style="color: #f8e3e2; background: transparent; border: none; width: 100%; text-align: left;">
-                            <i class="fas fa-sign-out-alt" style="color: #b3261e;"></i> Выйти
+                        <button type="submit" class="dropdown-item" style="color: #b3261e; background: transparent; border: none; width: 100%; text-align: left;">
+                            <i class="fas fa-sign-out-alt"></i> Выйти
                         </button>
                     </form>
                 </li>
             </ul>
         </div>
-        <span class="role-chip
-            {% if user.role == 'driver' %}role-driver
-            {% elif user.role == 'inspector' %}role-inspector
-            {% elif user.role == 'manager' %}role-manager{% endif %}">
-            {% if user.role == 'driver' %}🚗 Водитель
-            {% elif user.role == 'inspector' %}👮 Инспектор
-            {% elif user.role == 'manager' %}👔 Руководитель
-            {% endif %}
-        </span>
-        {% else %}
-        <a href="{% url 'login' %}" style="font-size: 0.88rem; font-weight: 600; padding: 0.45rem 1.2rem; border-radius: 6px; text-decoration: none; color: #ffffff; border: 1px solid rgba(255,255,255,0.4);">Войти</a>
-        <a href="{% url 'register' %}" style="font-size: 0.88rem; font-weight: 600; padding: 0.45rem 1.2rem; border-radius: 6px; text-decoration: none; background: #b8892b; color: #0f1f3d; border: 1px solid #b8892b;">Регистрация</a>
         {% endif %}
       </div>
     </div>
   </div>
 </nav>
 
-<div class="container mt-4">
+<div class="container">
     {% if user.is_authenticated and user.role == 'driver' and not user.full_license_plate %}
-    <div class="warning-banner">
-        <i class="fas fa-exclamation-triangle"></i>
-        <span>
-            <strong>Внимание!</strong> В вашем профиле не указан государственный номер автомобиля.
-            Без этой информации вы не сможете видеть свои штрафы и получать уведомления.
-        </span>
-        <a href="{% url 'edit_profile' %}">Указать номер →</a>
+    <div class="alert alert-warning mt-4 mb-0" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i> В вашем профиле не указан госномер.
+        <a href="{% url 'edit_profile' %}" class="alert-link">Указать номер</a>
     </div>
     {% endif %}
 
     {% if messages %}
+        <div class="mt-4">
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                 {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         {% endfor %}
+        </div>
     {% endif %}
 
     {% block content %}
-
+    
     {% if not user.is_authenticated %}
-
-    <div class="custom-auth-card">
-        <div class="custom-auth-icon">
+    <div class="auth-clean-wrap">
+        <div class="auth-clean-icon">
             <i class="fas fa-lock"></i>
         </div>
-
         <h2>Доступ к системе</h2>
-        <p class="subtitle">Для просмотра персональной статистики и управления нарушениями необходимо авторизоваться.</p>
-
-        <div class="custom-btn-group">
-            <a href="{% url 'login' %}" class="custom-btn-primary">Войти</a>
-            <a href="{% url 'register' %}" class="custom-btn-outline">Зарегистрироваться</a>
+        <p class="subtitle">Войдите, чтобы проверить статус своих штрафов и получить доступ к личному кабинету.</p>
+        
+        <div class="auth-clean-buttons">
+            <a href="{% url 'login' %}" class="btn-clean-primary">Войти в систему</a>
+            <a href="{% url 'register' %}" class="btn-clean-outline">Зарегистрироваться</a>
         </div>
 
-        <div class="custom-roles-wrap">
-            <div class="custom-role-item">
-                <i class="fas fa-car-side"></i>
-                <span>Водитель</span>
-            </div>
-            <div class="custom-role-item">
-                <i class="fas fa-user-shield"></i>
-                <span>Инспектор</span>
-            </div>
-            <div class="custom-role-item">
-                <i class="fas fa-chart-pie"></i>
-                <span>Руководитель</span>
-            </div>
+        <div class="auth-clean-roles">
+            <div class="auth-clean-role"><i class="fas fa-car-side"></i> Водитель</div>
+            <div class="auth-clean-role"><i class="fas fa-user-shield"></i> Инспектор</div>
+            <div class="auth-clean-role"><i class="fas fa-chart-pie"></i> Руководитель</div>
         </div>
     </div>
-
     {% endif %}
+    
     {% endblock %}
 </div>
 
 <footer class="site-footer">
-    <div class="container footer-inner">
-        <div class="footer-brand">
-            <span class="footer-icon"><i class="fas fa-shield-alt"></i></span>
-            <span>ГИБДД</span>
-        </div>
-        <p>© 2026 ГИБДД — Система учёта нарушений Правил дорожного движения</p>
-        <small>Все права защищены</small>
+    <div class="container">
+        <p>© 2026 ГИБДД — Система учёта нарушений ПДД</p>
     </div>
 </footer>
 
